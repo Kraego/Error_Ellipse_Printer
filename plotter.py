@@ -1,12 +1,8 @@
 import matplotlib.pyplot as plt
-import numpy as np
-from matplotlib.collections import PatchCollection
 import matplotlib.patches as m_patches
 
 
 class Plotter:
-    patches = []
-
     @staticmethod
     def init(x_min, x_max, y_min, y_max):
         plt.title('Error Ellipse Printer')
@@ -20,12 +16,10 @@ class Plotter:
     @staticmethod
     def add_ellipse(x, y, covariance_matrix_y):
         ellipse = m_patches.Ellipse(xy=(x, y), width=10, height=10,
-                                    angle=0, edgecolor='b', lw=2, fill=None)
+                                    angle=0, edgecolor='b', lw=1, fill=False)
 
-        Plotter.patches.append(ellipse)
-        collection = PatchCollection(Plotter.patches)
         ax = plt.gca()
-        ax.add_collection(collection)
+        ax.add_artist(ellipse)
 
     @staticmethod
     def plot():
