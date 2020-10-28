@@ -22,5 +22,6 @@ if __name__ == '__main__':
         Plotter.add_position(pos['x'], pos['y'])
         error_ellipse = calculate_error_ellipse(data['drive_uncertainty_factors'],
                                                 data['wheel_distance'], pos['alpha'])
-        Plotter.add_ellipse(pos['x'], pos['y'], error_ellipse)
+        Plotter.add_ellipse(pos['x'], pos['y'], error_ellipse['width'], error_ellipse['height'],
+                            error_ellipse['angle'])
     Plotter.plot()

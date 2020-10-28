@@ -2,6 +2,8 @@ import math
 
 import numpy as np
 
+global last_covariance_matrix
+
 
 def calculate_positions(start_position, steps):
     """
@@ -32,6 +34,14 @@ def calculate_positions(start_position, steps):
 
 
 def calculate_error_ellipse(drive_uncertainty_factors, wheel_distance, alpha):
+    """
+    Calculate error ellipse
+
+    :param drive_uncertainty_factors: the factors
+    :param wheel_distance: wheel distance
+    :param alpha: rotation
+    :return: a dict containing 'width', 'height' and 'angle'
+    """
     sigma_d = drive_uncertainty_factors['kr']
     sigma_alpha = drive_uncertainty_factors['kl']
 
@@ -41,6 +51,12 @@ def calculate_error_ellipse(drive_uncertainty_factors, wheel_distance, alpha):
     g_x = [[math.cos(alpha), -wheel_distance * math.sin(alpha)],
            [math.sin(alpha), wheel_distance * math.cos(alpha)]]
 
-    covariance_matrix_y = np.matmul(np.matmul(g_x, covariance_matrix_x), np.transpose(g_x))
+    covariance_matrix = np.matmul(np.matmul(g_x, covariance_matrix_x), np.transpose(g_x))
+    result = dict()
 
-    return covariance_matrix_y
+    result['width'] = 10
+    result['height'] = 10
+    result['angle'] = 0
+
+    last_covariance_matrix = covariance_matrix
+    return result

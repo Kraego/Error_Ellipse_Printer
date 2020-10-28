@@ -14,9 +14,9 @@ class Plotter:
         plt.plot(x, y, 'ro', markersize=3)
 
     @staticmethod
-    def add_ellipse(x, y, covariance_matrix_y):
-        ellipse = m_patches.Ellipse(xy=(x, y), width=10, height=10,
-                                    angle=0, edgecolor='b', lw=1, fill=False)
+    def add_ellipse(x, y, width, height, angle):
+        ellipse = m_patches.Ellipse(xy=(x, y), width=width, height=height,
+                                    angle=angle, edgecolor='b', lw=1, fill=False)
 
         ax = plt.gca()
         ax.add_artist(ellipse)
