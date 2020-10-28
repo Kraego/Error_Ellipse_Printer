@@ -1,0 +1,67 @@
+{
+  "start_position" : {
+    "x" : 0,
+    "y" : 0,
+    "theta" : 0
+  },
+  "drive_uncertainty_factors" : {
+    "kr" : 0.001,
+    "kl" : 0.001
+  },
+
+  "plot_area" : {
+    "xmax" : 100,
+    "xmin" : -5,
+    "ymax" : 120,
+    "ymin" : -5
+  },
+
+  "wheel_distance" : 20,
+
+  "steps": [
+    {
+      "rotation_degrees": 0,
+      "move" : 10
+    },
+    {
+      "rotation_degrees": 0,
+      "move" : 10
+    },
+    {
+      "rotation_degrees": 0,
+      "move" : 10
+    },
+    {
+      "rotation_degrees": 0,
+      "move" : 10
+    },
+    {
+      "rotation_degrees": 0,
+      "move" : 10
+    },
+    {
+      "rotation_degrees": 90,
+      "move" : 0
+    },
+        {
+      "rotation_degrees": 0,
+      "move" : 20
+    },
+    {
+      "rotation_degrees": 0,
+      "move" : 20
+    },
+    {
+      "rotation_degrees": 0,
+      "move" : 20
+    },
+    {
+      "rotation_degrees": 0,
+      "move" : 20
+    },
+    {
+      "rotation_degrees": 0,
+      "move" : 20
+    }
+  ]
+}
