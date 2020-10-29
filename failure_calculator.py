@@ -3,19 +3,19 @@ import numpy as np
 import numpy.linalg as linalg
 
 
-def calculate_sigma_p_n_1(sigma_p_n, drive_uncertainty_factors, wheel_distance, movement, alpha):
+def calculate_sigma_p_n_1(sigma_p_n, uncertainty_factors, wheel_distance, movement, alpha):
     """
     Calculate covariance of current step - sigma p(n+1) n..steps
 
     :param sigma_p_n covariance matrix of step n (previous step)
-    :param drive_uncertainty_factors: the factors
+    :param uncertainty_factors: the uncertainty factors of the drive
     :param wheel_distance: wheel distance
     :param movement: desired movement
     :param alpha: rotation
-    :return: sigma p(n+1)
+    :return: sigma p (n+1)
     """
-    sigma_r = drive_uncertainty_factors['kr']
-    sigma_l = drive_uncertainty_factors['kl']
+    sigma_r = uncertainty_factors['kr']
+    sigma_l = uncertainty_factors['kl']
 
     rotation = math.radians(alpha)
 
@@ -37,10 +37,6 @@ def calculate_sigma_p_n_1(sigma_p_n, drive_uncertainty_factors, wheel_distance, 
     return sigma_p_n_1
 
 
-def extract_ellipse(sigma_p_n):
+def extract_ellipse_axes(sigma_p_n):
     ew, ev = linalg.eig(sigma_p_n)
-    result = dict()
-    result['width'] = 1 / math.sqrt(ew[0])
-    result['height'] = 1 / math.sqrt(ew[1])
-    result['angle'] = 90 # / math.sqrt(ew[2])
-    return result
+    return 1 / math.sqrt(ew[0]), 1 / math.sqrt(ew[1])

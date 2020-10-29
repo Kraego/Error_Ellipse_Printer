@@ -11,9 +11,9 @@
   },
 
   "plot_area" : {
-    "xmax" : 300,
+    "xmax" : 100,
     "xmin" : -5,
-    "ymax" : 300,
+    "ymax" : 120,
     "ymin" : -5
   },
 
