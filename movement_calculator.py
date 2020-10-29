@@ -3,7 +3,7 @@ import math
 # moved distance to get to actual pos
 POS_MOVED = 'movement'
 # intended Rotation
-POS_ALPHA = 'alpha'
+POS_DIRECTION = 'direction'
 POS_Y = 'y'
 POS_X = 'x'
 # input data
@@ -31,7 +31,7 @@ def calculate_positions(start_position, steps):
         position = dict()
         position[POS_X] = previous_x + step[STEP_MOVE] * math.cos(theta_rads)
         position[POS_Y] = previous_y + step[STEP_MOVE] * math.sin(theta_rads)
-        position[POS_ALPHA] = theta_rads
+        position[POS_DIRECTION] = theta_rads
         position[POS_MOVED] = step[STEP_MOVE]
         positions.append(position)
         previous_x = position[POS_X]
