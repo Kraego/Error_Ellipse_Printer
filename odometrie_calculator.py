@@ -57,7 +57,7 @@ def calculate_position(step, x_n, y_n, theta_n):
 
 def calculate_ellipse_points_from_covariance_matrix(position, sigma_p_n):
     """
-    Calcualte sigma ellipse for given covariance matrix
+    Calculate sigma ellipse for given covariance matrix
 
     :param position: position of the ellipse
     :param sigma_p_n: covariance matrix
