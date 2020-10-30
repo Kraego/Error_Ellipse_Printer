@@ -1,7 +1,8 @@
 import json
+import math
 from plotter import Plotter
-from failure_calculator import calculate_sigma_p_n_1, extract_ellipse_axes
-from movement_calculator import POS_Y, POS_X, POS_MOVED, POS_DIRECTION, calculate_positions
+from odometrie_calculator import calculate_sigma_p_n_1, calculate_position, POS_Y, POS_X, POS_THETA, STEP_MOVE, \
+    STEP_ROT_DEGREES, calculate_ellipse_points_from_covariance_matrix
 
 CONFIG_FILE = 'movingConfig_homework_no5.json'
 
@@ -17,19 +18,28 @@ def __plot_add_start_point(x, y):
 
 
 def __plot_add_positions_and_failure_ellipses(start_pos, steps, uncertainty_factors, wheel_distance):
-    positions = calculate_positions(start_pos, steps)
-    orientation = 90  # ellipse is normal to direction
     sigma_p_n = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    Plotter.add_position(start_pos['x'], start_pos['y'])
+    previous_location = None
+    theta_n = 0
 
-    for pos in positions:
+    for step in steps:
+        #  Calculate
+        if previous_location:
+            pos = calculate_position(step, previous_location[POS_X], previous_location[POS_Y], previous_location[POS_THETA])
+            theta_n = previous_location[POS_THETA]
+        else:
+            pos = calculate_position(step, 0, 0, 0)
+
+        sigma_p_n_1 = calculate_sigma_p_n_1(sigma_p_n, uncertainty_factors, wheel_distance, step[STEP_MOVE], theta_n, math.radians(step[STEP_ROT_DEGREES]))
+        ex, ey = calculate_ellipse_points_from_covariance_matrix(pos, sigma_p_n_1)
+
+        #  Plot
         Plotter.add_position(pos[POS_X], pos[POS_Y])
-        sigma_p_n_1 = calculate_sigma_p_n_1(sigma_p_n, uncertainty_factors, wheel_distance, pos[POS_MOVED])
-        orientation = orientation + pos[POS_DIRECTION]
+        Plotter.add_ellipse(ex, ey)
 
-        error_ellipse_axes = extract_ellipse_axes(sigma_p_n_1)
-        Plotter.add_ellipse(pos[POS_X], pos[POS_Y], error_ellipse_axes[0], error_ellipse_axes[1],
-                            orientation)
-        sigma_p_n = sigma_p_n_1
+        sigma_p_n = sigma_p_n_1  # aggregation
+        previous_location = pos
 
 
 if __name__ == '__main__':

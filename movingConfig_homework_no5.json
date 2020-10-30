@@ -11,58 +11,58 @@
   },
 
   "plot_area" : {
-    "xmax" : 100,
-    "xmin" : -5,
-    "ymax" : 120,
-    "ymin" : -5
+    "xmax" : 1.2,
+    "xmin" : -0.1,
+    "ymax" : 1.2,
+    "ymin" : -0.1
   },
 
-  "wheel_distance" : 20,
+  "wheel_distance" : 0.2,
 
   "steps": [
     {
       "rotation_degrees": 0,
-      "move" : 10
+      "move" : 0.1
     },
     {
       "rotation_degrees": 0,
-      "move" : 10
+      "move" : 0.1
     },
     {
       "rotation_degrees": 0,
-      "move" : 10
+      "move" : 0.1
     },
     {
       "rotation_degrees": 0,
-      "move" : 10
+      "move" : 0.1
     },
     {
       "rotation_degrees": 0,
-      "move" : 10
+      "move" : 0.1
     },
     {
       "rotation_degrees": 90,
       "move" : 0
     },
-        {
+    {
       "rotation_degrees": 0,
-      "move" : 20
+      "move" : 0.2
     },
     {
       "rotation_degrees": 0,
-      "move" : 20
+      "move" : 0.2
     },
     {
       "rotation_degrees": 0,
-      "move" : 20
+      "move" : 0.2
     },
     {
       "rotation_degrees": 0,
-      "move" : 20
+      "move" : 0.2
     },
     {
       "rotation_degrees": 0,
-      "move" : 20
+      "move" : 0.2
     }
   ]
 }

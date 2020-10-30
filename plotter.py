@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import matplotlib.patches as m_patches
 
 
 class Plotter:
@@ -14,12 +13,8 @@ class Plotter:
         plt.plot(x, y, 'ro', markersize=3)
 
     @staticmethod
-    def add_ellipse(x, y, width, height, angle):
-        ellipse = m_patches.Ellipse(xy=(x, y), width=width, height=height,
-                                    angle=angle, edgecolor='b', lw=1, fill=False)
-
-        ax = plt.gca()
-        ax.add_artist(ellipse)
+    def add_ellipse(ellipse_x, ellipse_y):
+        plt.plot(ellipse_x, ellipse_y, '-', color='blue', linewidth=1)
 
     @staticmethod
     def plot():
