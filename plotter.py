@@ -9,12 +9,12 @@ class Plotter:
         plt.axis([x_min, x_max, y_min, y_max])
 
     @staticmethod
-    def add_position(x, y):
-        plt.plot(x, y, 'ro', markersize=3)
+    def add_position(x, y, color):
+        plt.plot(x, y, color + 'o', markersize=3)
 
     @staticmethod
-    def add_ellipse(ellipse_x, ellipse_y):
-        plt.plot(ellipse_x, ellipse_y, '-', color='blue', linewidth=1)
+    def add_lines(ellipse_x, ellipse_y, color):
+        plt.plot(ellipse_x, ellipse_y, '-', color=color, linewidth=1)
 
     @staticmethod
     def plot():
