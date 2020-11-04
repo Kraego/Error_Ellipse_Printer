@@ -1,5 +1,5 @@
 # Error_Ellipse_Printer
-Prints movement and error ellipses according to given movingConfig.json. For **a robot with differential drive.
+Prints movement and error ellipses according to given movingConfig.json. For **a robot with differential drive**.
 
 Usage see main.
 
