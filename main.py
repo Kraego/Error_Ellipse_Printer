@@ -17,7 +17,7 @@ def __plot_add_positions_and_failure_ellipses(start_pos, steps, uncertainty_fact
     sigma_p_n = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
     Plotter.add_position(start_pos['x'], start_pos['y'], 'r')
     previous_location = None
-    theta_n = 0
+    theta_n = math.radians(start_pos['theta'])
 
     for step in steps:
         #  Calculate
@@ -25,7 +25,7 @@ def __plot_add_positions_and_failure_ellipses(start_pos, steps, uncertainty_fact
             pos = calculate_position(step, previous_location[POS_X], previous_location[POS_Y], previous_location[POS_THETA])
             theta_n = previous_location[POS_THETA]
         else:
-            pos = calculate_position(step, 0, 0, 0)
+            pos = calculate_position(step, 0, 0, theta_n)
 
         sigma_p_n_1 = calculate_sigma_p_n_1(sigma_p_n, uncertainty_factors, wheel_distance, step[STEP_MOVE], theta_n, math.radians(step[STEP_ROT_DEGREES]))
         ex, ey = calculate_ellipse_points_from_covariance_matrix(pos, sigma_p_n_1)
